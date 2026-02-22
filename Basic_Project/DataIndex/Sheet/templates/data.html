@@ -1,0 +1,56 @@
+<style>
+    body{
+        background-color: black;
+        color: aliceblue;
+        display: grid;
+        justify-items: center;
+    }
+
+    div{
+        color: cadetblue;
+    }
+    h1{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-shadow: 3px 2px 3px rgb(183, 211, 212);
+        font-size: 60px;
+    }
+
+    table, tr, td{
+        border: 2px solid white;
+    }
+    
+    td{
+        width: auto;
+        white-space: nowrap;
+        padding: 0px 5px;
+    }
+    tr:first-of-type{
+        background-color: rgb(118, 111, 111);
+    }
+</style>
+
+<div>
+    <h1 align="center">Student Data</h1><br>
+    <table>
+        <tbody>
+            <tr>
+                <td>Name</td>
+                <td>ID</td>
+                <td>Date of Birth</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>Address</td>
+            </tr>
+            {% for member in data %}
+            <tr>
+                <td> {{member.Name}} </td>
+                <td> {{member.Serial}} </td>
+                <td> {{member.Birth_Date}} </td>
+                <td> {{member.Email}} </td>
+                <td> {{member.Phone}} </td>
+                <td> {{member.Address}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
