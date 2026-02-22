@@ -1,7 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.contrib import messages
 from .models import student
-from .forms import StudentForm
 
 # Create your views here.
 def show(request):
@@ -10,12 +8,19 @@ def show(request):
 
 def submission(request):
     if request.method == "POST":
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Student record created successfully.")
-            return redirect('StudentList')
-        # if invalid, fall through to re‑render with errors
-    else:
-        form = StudentForm()
-    return render(request, "submission.html", {"form": form})
+        name = request.POST.get("name")
+        serial = request.POST.get("serial")
+        dob = request.POST.get("dob")
+        email = request.POST.get("email")
+        phone = request.POST.get("phone")
+        address = request.POST.get("address")
+
+        student.objects.create(
+            Name = name,
+            Serial = serial,
+            Birth_Date = dob,
+            Email = email,
+            Phone = phone,
+            Address = address
+        )
+    return render(request, "submission.html")
